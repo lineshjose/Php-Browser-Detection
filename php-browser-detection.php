@@ -17,7 +17,7 @@
 -----------------------------------------------------------
 
 	This function to get the current browser info
-	@param $arg : returns reuestd browser property. Eg: platform, name, version,
+	@param $arg : returns current browser property. Eg: platform, name, version,
 	@param $agent: it is the $_SERVER['HTTP_USER_AGENT'] value
 */
 	
