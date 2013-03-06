@@ -1,4 +1,4 @@
-php-browser-detection
+PHP Browser Detection
 =====================
 Name: Simple PHP Browser Detection script.
 
