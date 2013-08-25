@@ -2,7 +2,7 @@ PHP Browser Detection
 =====================
 Name: Simple PHP Browser Detection script.
 
-Version : 13.02
+Version : 13.08
 
 Author: Linesh Jose
 
