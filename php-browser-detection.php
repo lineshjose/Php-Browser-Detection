@@ -1,7 +1,7 @@
 <?php
 /*
 	Name: Simple PHP Browser Detection script.
-	Version : 13.02
+	Version : 13.08
 	Author: Linesh Jose
 	Url: http://lineshjose.com
 	Email: lineshjose@gmail.com
@@ -23,12 +23,12 @@
 	
 function get_browser_info($arg='',$agent='')
 {
+	//print_r($_SERVER['HTTP_USER_AGENT']);
 	if(empty($agent) ) {
 		$browser['agent'] = $_SERVER['HTTP_USER_AGENT'];
 	}else{
 		$browser['agent']=$agent;
 	}
-	
 
 	
 	/*----------------------------------------- Platform ---------------------------------------------*/
@@ -42,9 +42,9 @@ function get_browser_info($arg='',$agent='')
 		$browser['platform']='android';
 	}elseif( ((bool) strpos( $browser['agent'] , 'Linux')) && (!(bool)strpos( $browser['agent'] , 'Android')) ){ 	// for Linux
 		$browser['platform']='linux';
-	}elseif( ((bool) strpos( $browser['agent']  , 'Windows')) ){
+	}elseif( ((bool) strpos( $browser['agent']  , 'Windows')) ){	// for Windows
 		$browser['platform']='windows';
-	}elseif( ((bool) strpos($browser['agent']  , 'Macintosh')) ){
+	}elseif( ((bool) strpos($browser['agent']  , 'Macintosh')) ){	// for Macintosh
 		$browser['platform']='mac';
 	}else{
 		$browser['platform']='others';
@@ -53,15 +53,15 @@ function get_browser_info($arg='',$agent='')
 	
 	
 	/*----------------------------------------- browser name ---------------------------------------------*/
-	if((bool) strpos( $browser['agent'] , 'Firefox')){ 	// for iPad
+	if((bool) strpos( $browser['agent'] , 'Firefox')){ 	// for Firefox
 		$browser['name']='firefox';
-	}elseif((bool) strpos( $browser['agent']  , 'Chrome')){ 	// for iPhone
+	}elseif((bool) strpos( $browser['agent']  , 'Chrome')){ 	// for chrome
 		$browser['name']='chrome';
-	}elseif((bool) strpos( $browser['agent']  , 'MSIE')){ 	// for iPod
+	}elseif((bool) strpos( $browser['agent']  , 'MSIE')){ 	// for IE
 		$browser['name']='ie';
-	}elseif( ((bool) strpos( $browser['agent']  , 'Safari')) ){
+	}elseif( ((bool) strpos( $browser['agent']  , 'Safari')) ){ // for Safari
 		$browser['name']='safari';
-	}elseif( ((bool) strpos( $browser['agent']  , 'Opera')) ){
+	}elseif( ((bool) strpos( $browser['agent']  , 'Opera')) ){// for Opera
 		$browser['name']='opera';
 	}else{
 		$browser['name']='others';
@@ -80,6 +80,7 @@ function get_browser_info($arg='',$agent='')
 	if (!preg_match_all($pattern,$browser['agent'], $matches)) {
 		// we have no matching number just continue
 	}
+	
 	// see how many we have
 	$i = count($matches['browser']);
 	if ($i != 1) {
@@ -102,11 +103,10 @@ function get_browser_info($arg='',$agent='')
 	// Major version --------------->
 	$browser['majorver']=(int)$version;
 	
-	
 	if($arg){
 		return $browser[$arg];
 	}else{	
-			return $browser;
+		return $browser;
 	}
 }
 
@@ -116,23 +116,15 @@ function get_browser_info($arg='',$agent='')
 	This function to validate current browser. this function returns boolian value
 	@param $name : browser name
 	@param $version: browser version
-	@param $platform: browser platform
-	
 */
-function is_browser($name, $version='', $platform='')
-{
+function is_browser($name, $version=''){
 	$name=strtolower($name);
 	$curr_brws=get_browser_info('name');
 	$curr_version=get_browser_info('version');
-	$curr_platform=get_browser_info('platform');
-	
 	if($curr_brws==$name){
 		$true[]=true;
 	}
 	if($curr_version==$version){
-		$true[]=true;
-	}
-	if($curr_platform==$platform){
 		$true[]=true;
 	}
 	if(!empty($true)){
@@ -142,6 +134,29 @@ function is_browser($name, $version='', $platform='')
 		return true;
 	}else{
 		return false;
+	}
+}
+
+
+/* 
+	This function to validate current browser platform. this function returns boolian value
+	@param $platform: browser platform (OS)
+*/
+function is_browser_platform($platform=''){
+	if($platform){
+		$platform=strtolower($platform);
+		$curr_platform=get_browser_info('platform');
+			if($curr_platform==$platform){
+				$true=true;
+			}else if( $platform=='ios' && in_array($curr_platform, array('iphone','ipod','ipad'))){
+				$true=true;	
+			}
+		$true=trim($true);
+		if(!empty($true)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 ?>
