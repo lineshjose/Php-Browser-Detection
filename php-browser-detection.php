@@ -1,7 +1,7 @@
 <?php
 /*
 	Name: Simple PHP Browser Detection script.
-	Version : 13.10
+	Version : 13.11
 	Author: Linesh Jose
 	Url: http://lineshjose.com
 	Email: lineshjose@gmail.com
