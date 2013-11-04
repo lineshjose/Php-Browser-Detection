@@ -20,7 +20,7 @@ function browsers(){
 	return array(
 		0=>	'Avant Browser','Arora', 'Flock', 'Konqueror','OmniWeb','Phoenix','Firebird','Mobile Explorer',	'Opera Mini','Netscape',
 			'Iceweasel','KMLite', 'Midori', 'SeaMonkey', 'Lynx', 'Fluid', 'chimera', 'NokiaBrowser',
-			'Firefox','Chrome','MSIE','Internet Explorer','Opera','Safari','Mozilla'
+			'Firefox','Chrome','MSIE','Internet Explorer','Opera','Safari','Mozilla','trident'
 		);	
 }
 /* List of popular web robots ---------- */
@@ -104,7 +104,10 @@ function get_browser_info($arg='',$agent='')
 
 	/*----------------------------------------- Browser Info ---------------------------------------------*/
 	$browser['agent']=$agent;
-	if(empty($name)){
+	if($name=='trident'){
+		$browser['name']='Internet Explorer';
+		$browser['version']='11';
+	}elseif(empty($name)){
 		$browser['name']='Unknown';
 		$browser['version']=0;	
 	}else{
@@ -120,7 +123,6 @@ function get_browser_info($arg='',$agent='')
 		return $browser;
 	}
 }
-
 
 
 
