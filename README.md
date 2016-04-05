@@ -10,7 +10,7 @@ Url: http://lineshjose.com
 
 Email: lineshjose@gmail.com
 
-Donate:  http://bit.ly/donate-linesh
+Donate:  https://lineshjose.com/make-a-donation/
 
 github: https://github.com/lineshjose
 
