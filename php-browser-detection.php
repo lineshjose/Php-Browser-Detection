@@ -3,9 +3,8 @@
 	Name: Simple PHP Browser Detection script.
 	Version : 13.11
 	Author: Linesh Jose
-	Url: http://lineshjose.com
-	Email: lineshjose@gmail.com
-	Donate:  https://lineshjose.com/make-a-donation/
+	Url: http://linesh.com
+	Donate:  http://linesh.com/make-a-donation/
 	github: https://github.com/lineshjose
 	Copyright: Copyright (c) 2013 LineshJose.com
 	
