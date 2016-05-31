@@ -6,11 +6,9 @@ Version : 13.11
 
 Author: Linesh Jose
 
-Url: http://lineshjose.com
+Url: http://linesh.com/
 
-Email: lineshjose@gmail.com
-
-Donate:  https://lineshjose.com/make-a-donation/
+Donate:  http://lineshj.com/make-a-donation/
 
 github: https://github.com/lineshjose
 
