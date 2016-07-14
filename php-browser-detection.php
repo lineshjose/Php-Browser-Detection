@@ -1,7 +1,7 @@
 <?php
 /*
 	Name: Simple PHP Browser Detection script.
-	Version : 13.11
+	Version : 16.07
 	Author: Linesh Jose
 	Url: http://linesh.com
 	Donate:  http://linesh.com/make-a-donation/
@@ -25,14 +25,14 @@ function browsers(){
 /* List of popular web robots ---------- */
 function robots(){
 	return  array(
-		0=>	'Googlebot', 'Googlebot-Image', 'MSNBot', 'Yahoo! Slurp', 'Yahoo', 'AskJeeves','FastCrawler','InfoSeek Robot 1.0', 'Lycos',
+		0=>	'Googlebot', 'Googlebot-Image', 'MSNBot', 'Yahoo! Slurp', 'Yahoo', 'AskJeeves','FastCrawler','InfoSeek Robot', 'Lycos',
 			'YandexBot','YahooSeeker'
 		);	
 }
 /* List of popular os platforms ---------- */
 function platforms(){
 	return  array(
-		0=>	'iPad', 'iPhone', 'iPod', 'Mac OS X', 'Macintosh', 'Power PC Mac', 'Windows', 'Windows CE',
+		0=>	'iPad', 'iPhone', 'iPod','iOS', 'macOS','tvOS', 'Mac OS X', 'Macintosh', 'Power PC Mac', 'Windows', 'Windows CE',
 			'Symbian', 'SymbianOS', 'Symbian S60', 'Ubuntu', 'Debian', 'NetBSD', 'GNU/Linux', 'OpenBSD', 'Android', 'Linux',
 			'Mobile','Tablet',
 		);	
@@ -72,7 +72,18 @@ function get_browser_info($arg='',$agent='')
 		}
 	}
 	
-	/*----------------------------------------- robot name ---------------------------------------------*/
+	
+	/*----------------------------------------- Platform ---------------------------------------------*/
+	foreach(platforms() as $key){
+		if (preg_match("|".preg_quote(trim($key))."|i", $agent)){
+			$platform=trim($key);
+			break;  
+		}else{
+			continue;
+		}
+	}
+	
+	/*----------------------------------------- Version ---------------------------------------------*/
 	$known = array('version',strtolower($name), 'other');
 	$pattern = '#(?<browser>' . join('|', $known) .')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
 	if (preg_match_all($pattern,$agent, $matches)) 
@@ -91,15 +102,7 @@ function get_browser_info($arg='',$agent='')
 		$version=(int)round($version);
 	}
 
-	/*----------------------------------------- Platform ---------------------------------------------*/
-	foreach(platforms() as $key){
-		if (preg_match("|".preg_quote(trim($key))."|i", $agent)){
-			$platform=trim($key);
-			break;  
-		}else{
-			continue;
-		}
-	}
+
 
 	/*----------------------------------------- Browser Info ---------------------------------------------*/
 	$browser['agent']=$agent;
