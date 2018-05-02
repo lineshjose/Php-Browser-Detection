@@ -1,7 +1,7 @@
 <?php
 /*
 	Name: Simple PHP Browser Detection script.
-	Version : 16.07
+	Version : 18.05
 	Author: Linesh Jose
 	Url: http://linesh.com
 	Donate:  http://linesh.com/make-a-donation/
@@ -25,8 +25,7 @@ function browsers(){
 /* List of popular web robots ---------- */
 function robots(){
 	return  array(
-		0=>	'Googlebot', 'Googlebot-Image', 'MSNBot', 'Yahoo! Slurp', 'Yahoo', 'AskJeeves','FastCrawler','InfoSeek Robot', 'Lycos',
-			'YandexBot','YahooSeeker'
+		0=>	'GTmetrix','Googlebot', 'Googlebot-Image', 'MSNBot', 'Yahoo! Slurp', 'Yahoo', 'AskJeeves','FastCrawler','InfoSeek Robot', 'Lycos','YandexBot','YahooSeeker','Google Page Speed Insights','X11'
 		);	
 }
 /* List of popular os platforms ---------- */
@@ -51,6 +50,7 @@ function get_browser_info($arg='',$agent='')
 	}
 	
 	/*----------------------------------------- browser name ---------------------------------------------*/
+	$name='';
 	foreach( browsers() as $key){
 		if(strpos($agent, strtolower(trim($key))) ){ 	
 			$name= trim($key);
@@ -86,8 +86,10 @@ function get_browser_info($arg='',$agent='')
 	/*----------------------------------------- Version ---------------------------------------------*/
 	$known = array('version',strtolower($name), 'other');
 	$pattern = '#(?<browser>' . join('|', $known) .')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+	$version=0;	
 	if (preg_match_all($pattern,$agent, $matches)) 
-	{
+	{	
+
 		if (count($matches['browser'])>0)
 		{
 			if (strripos($agent,"version") < strripos($agent,strtolower($name)) ){	
@@ -185,5 +187,4 @@ function is_robot(){
 		return false;
 	}
 }
-
 ?>
