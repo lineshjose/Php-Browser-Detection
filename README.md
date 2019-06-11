@@ -5,9 +5,9 @@ Version : 13.11
 
 Author: Linesh Jose
 
-Url: http://linesh.com/
+Url: https://linesh.com/
 
-Donate:  http://lineshj.com/make-a-donation/
+Donate:  https://linesh.com/make-a-donation/
 
 github: https://github.com/lineshjose
 
